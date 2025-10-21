@@ -38,10 +38,12 @@ pipeline {
                 withSonarQubeEnv('SonarQube') {
                     bat """
                         mvn sonar:sonar ^
-                        -Dsonar.projectKey=${SONAR_PROJECT_KEY} ^
+                        -Dsonar.projectKey=barber-management ^
                         -Dsonar.projectName=Barber-Management-System ^
                         -Dsonar.sources=src ^
-                        -Dsonar.java.binaries=build/classes
+                        -Dsonar.java.binaries=target/classes ^
+                        -Dsonar.host.url=http://localhost:9000 ^
+                        -Dsonar.token=sqp_0b59677d4793a607f5afa3df3eedbdc24e6538ad
                     """
                 }
             }
