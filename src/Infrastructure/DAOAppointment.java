@@ -19,8 +19,8 @@ public class DAOAppointment implements IDAOcrud<Appointment> {
 
     @Override
     public void create(Appointment appointment) {
-        try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO appointment (userId, barberId, serviceId, appointmentTime) VALUES (?, ?, ?, ?)");
+        try (PreparedStatement statement = connection.prepareStatement(
+        "INSERT INTO appointment (userId, barberId, serviceId, appointmentTime) VALUES (?, ?, ?, ?)")) {
             statement.setLong(1, appointment.getUser().getId());
             statement.setLong(2, appointment.getBarber().getId());
             statement.setLong(3, appointment.getService().getId());
@@ -34,8 +34,7 @@ public class DAOAppointment implements IDAOcrud<Appointment> {
     @Override
     public Appointment findById(int id) {
         Appointment appointment = null;
-        try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM appointment WHERE id = ?");
+        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM appointment WHERE id = ?")) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -99,8 +98,8 @@ public class DAOAppointment implements IDAOcrud<Appointment> {
     }
     @Override
     public void update(Appointment appointment) {
-        try {
-            PreparedStatement statement = connection.prepareStatement("UPDATE appointment SET userId = ?, barberId = ?, serviceId = ?, appointmentTime = ? WHERE id = ?");
+        try (PreparedStatement statement = connection.prepareStatement(
+        "UPDATE appointment SET userId = ?, barberId = ?, serviceId = ?, appointmentTime = ? WHERE id = ?")) {
             statement.setLong(1, appointment.getUser().getId());
             statement.setLong(2, appointment.getBarber().getId());
             statement.setLong(3, appointment.getService().getId());
