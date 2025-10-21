@@ -43,7 +43,7 @@ pipeline {
                         -Dsonar.sources=src ^
                         -Dsonar.java.binaries=target/classes ^
                         -Dsonar.host.url=http://localhost:9000 ^
-                        -Dsonar.login=sqp_0b596774d793a607f5afa3df3eedbc24e6538ad
+                        -Dsonar.login=sqa_4b9c9d8a36009b9f245aa0ef32641572f7c4881f
                     """
                 }
             }
